@@ -1,0 +1,28 @@
+---
+- hosts: all
+  roles:
+    - common
+  tasks:
+    - name: Perform a safe upgrade
+      apt: upgrade=safe update_cache=yes
+
+    - name: 'Ensure opencv, tesseract and poppler are installed'
+      apt: pkg={{item}} update_cache=yes cache_valid_time=3600
+      with_items:
+        - libzmq3
+        - python-dev
+        - tesseract-ocr
+        - python-opencv
+        - python-matplotlib
+        - poppler-utils
+
+    - name: Install python packages
+      pip: name={{item}}
+      with_items:
+        - 'ipython[all]'
+
+    - name: Download python-tesseract deb
+      get_url: dest=/opt/ url=https://bitbucket.org/3togo/python-tesseract/downloads/python-tesseract_0.9-0.4ubuntu0_amd64.deb
+
+    - name: Install python-tesseract deb
+      command: chdir=/opt/ dpkg -i python-tesseract_0.9-0.4ubuntu0_amd64.deb creates=/usr/lib/python2.7/dist-packages/tesseract.py

@@ -1,0 +1,15 @@
+---
+- name: Install base dev packages
+  apt: pkg={{item}} update_cache=yes cache_valid_time=3600
+  with_items:
+    - build-essential
+    - python-dev
+    - cmake
+    - git
+    - mercurial
+
+- name: Get pip installer
+  get_url: dest=/opt/ url=https://bootstrap.pypa.io/get-pip.py
+
+- name: Install pip
+  command: chdir=/opt/ python get-pip.py
