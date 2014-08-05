@@ -54,3 +54,6 @@ docs/_build/
 
 # iPython
 .ipynb_checkpoints
+
+# Vagrant
+.vagrant/
