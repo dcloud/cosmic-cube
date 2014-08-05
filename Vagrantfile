@@ -6,12 +6,19 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "chef/ubuntu-14.04"
+    config.vm.box = "chef/ubuntu-14.04"
 
-  config.vm.provision "ansible" do |ansible|
-    ansible.sudo = true
-    ansible.verbose = 'vv'
-    ansible.playbook = "provisioning/site.yaml"
-  end
+    config.vm.network :forwarded_port, guest: 8888, host: 8888
+
+    config.vm.provider "virtualbox" do |vb|
+      vb.gui = false
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+    end
+
+    config.vm.provision "ansible" do |ansible|
+      ansible.sudo = true
+      ansible.verbose = 'vv'
+      ansible.playbook = "provisioning/site.yaml"
+    end
 
 end

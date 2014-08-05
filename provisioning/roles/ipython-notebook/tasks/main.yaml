@@ -1,0 +1,16 @@
+---
+- name: Install base dev packages
+  apt: pkg={{item}} update_cache=yes cache_valid_time=3600
+  with_items:
+    - libzmq3
+    - libzmq3-dev
+
+- name: Install ipython with all the extras
+  pip: name={{item}}
+  with_items:
+    - 'ipython[all]'
+
+- name: Create ipython-notebook service
+  template: src=ipynb.conf dest=/etc/init/ipynb.conf mode=0644
+
+- service: name=ipynb state=started
