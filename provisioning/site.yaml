@@ -14,6 +14,7 @@
         - tesseract-ocr
         - python-opencv
         - python-matplotlib
+        - libmagickwand-dev
         - poppler-utils
 
     - name: Download python-tesseract deb
@@ -21,3 +22,6 @@
 
     - name: Install python-tesseract deb
       command: chdir=/opt/ dpkg -i python-tesseract_0.9-0.4ubuntu0_amd64.deb creates=/usr/lib/python2.7/dist-packages/tesseract.py
+
+- name: 'Install Wand, python binding for ImageMagick'
+  pip: name=Wand
