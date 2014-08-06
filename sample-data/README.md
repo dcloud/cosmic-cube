@@ -12,8 +12,8 @@ Text-based pdf from <https://stations.fcc.gov/collect/files/35486/Political%20Fi
 ## Converting to image files
 
 ```
-pdftoppm Everytown-for-Gun-Safety-AF-909199-14062383009820.pdf Everytown-for-Gun-Safety-AF
+pdftoppm -r 300 Everytown-for-Gun-Safety-AF-909199-14062383009820.pdf Everytown-for-Gun-Safety-AF
 
-pdftoppm kbmt-tv-ad.pdf kbmt-tv-ad
+pdftoppm -r 300 kbmt-tv-ad.pdf kbmt-tv-ad
 
 ```
