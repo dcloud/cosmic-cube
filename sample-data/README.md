@@ -11,9 +11,13 @@ Text-based pdf from <https://stations.fcc.gov/collect/files/35486/Political%20Fi
 
 ## Converting to image files
 
+On the command line:
+
 ```
 pdftoppm -r 300 Everytown-for-Gun-Safety-AF-909199-14062383009820.pdf Everytown-for-Gun-Safety-AF
 
 pdftoppm -r 300 kbmt-tv-ad.pdf kbmt-tv-ad
 
 ```
+
+An attempt to use ImageMagick via python resulted in poor image quality when setting expected resolution. `pdftoppm` handles this with some smoothing method (not sure how to get ImageMagick to do something of similar quality).
